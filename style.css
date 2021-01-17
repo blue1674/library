@@ -1,0 +1,13 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    row-gap: 20%;
+    padding-top: 3%;
+    justify-content: center;
+}
+
+#addButton{
+    grid-column: 1/span 4;
+}
