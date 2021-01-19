@@ -9,36 +9,37 @@
 </head>
 
 <body>
+    <header><h1>My Library</h1></header>
     <div class="container">
         <button id="addButton">ADD</button>
     </div>
-    <form id="addBookForm">
+    <form id="addBookForm" action="#">
         <p>
             <label> Title:
-                <input type="text" name="title" id ="title" />
+                <input type="text" name="title" id="title" />
             </label>
 
         </p>
         <p><label>
                 Author:
-                <input type="text" name="author" id = "author" />
+                <input type="text" name="author" id="author" />
             </label>
 
         </p>
         <p>
             <label>
                 No. of Pages:
-                <input type="number" min="1" name="noOfPages" id= "noOfPages" />
+                <input type="number" min="1" name="noOfPages" id="noOfPages" />
             </label>
 
         </p>
         <p>
             Read?
-            <label><input type="radio" name="isRead" value="yes"  />Yes</label>
-            <label> <input type="radio" name="isRead" value="no" />No</label>
+            <label><input type="radio" name="isRead" value="Yes" />Yes</label>
+            <label> <input type="radio" name="isRead" value="No" />No</label>
         </p>
         <p>
-            <label><input type="submit" name="addBook" value="Add Book" id = "submitButton" /></label>
+            <label><input type="submit" name="addBook" value="Add Book" id="submitButton" /></label>
         </p>
     </form>
     <script src="script.js">

@@ -1,11 +1,42 @@
+
+:root {
+    --first-color :#1c0c2a; 
+    --second-color :#343b99; 
+    --third-color :#61bdf6; 
+    --fourth-color :#9affdc; 
+    --primary-text-color :#212121; 
+    --secondary-text-color :#757575; 
+    --divider-color :#BDBDBD; 
+    }
+    
+    
+
+    body{
+        background-color: var(--first-color);
+        color: var(--primary-text-color);
+    }
+    header{
+        display: flex;
+        justify-content: center;
+        color: var(--secondary-text-color);
+    }
 .container{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     align-items: center;
     row-gap: 20%;
     padding-top: 3%;
     justify-content: center;
+}
+.card{
+    background-color: var(--second-color);
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--divider-color);
 }
 
 #addButton{
