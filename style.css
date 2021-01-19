@@ -11,3 +11,7 @@
 #addButton{
     grid-column: 1/span 4;
 }
+
+#addBookForm{
+    display: none;
+}

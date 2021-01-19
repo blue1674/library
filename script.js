@@ -1,5 +1,6 @@
 let myLibrary = [];
 const addButton = document.getElementById("addButton"); 
+const submitButton = document.getElementById("submitButton");
 const container = document.getElementsByClassName("container")[0]; 
 function Book(author, title, noOfPages, isRead) {
     this.author = author,
@@ -23,5 +24,25 @@ function display() {
     });
 }
 addBookToLibrary(new Book("JRR Tolkien", "The Hobbit", "295", "not read yet"));// "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
-addButton.addEventListener("click", );
+addButton.addEventListener("click", showForm);
+submitButton.addEventListener('click', submitForm); 
 display();
+
+function showForm(){
+    document.getElementById("addBookForm").style.display = "block";
+    
+}
+
+function submitForm(){
+    const title = document.getElementById("title").value;
+    const author = document.getElementById('author').value;
+    const noOfPages = document.getElementById('noOfPages').value;
+    const book = new Book(author, title, noOfPages, "Yes"); 
+    myLibrary.push(book); 
+    hideForm();
+    display();
+}
+
+function hideForm(){
+    document.getElementById("addBookForm").style.display = "none";
+}

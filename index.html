@@ -1,17 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
-        <button id = "addButton" >ADD</button>
+        <button id="addButton">ADD</button>
     </div>
-    <script src = "script.js">
+    <form id="addBookForm">
+        <p>
+            <label> Title:
+                <input type="text" name="title" id ="title" />
+            </label>
 
+        </p>
+        <p><label>
+                Author:
+                <input type="text" name="author" id = "author" />
+            </label>
+
+        </p>
+        <p>
+            <label>
+                No. of Pages:
+                <input type="number" min="1" name="noOfPages" id= "noOfPages" />
+            </label>
+
+        </p>
+        <p>
+            Read?
+            <label><input type="radio" name="isRead" value="yes"  />Yes</label>
+            <label> <input type="radio" name="isRead" value="no" />No</label>
+        </p>
+        <p>
+            <label><input type="submit" name="addBook" value="Add Book" id = "submitButton" /></label>
+        </p>
+    </form>
+    <script src="script.js">
     </script>
 </body>
+
 </html>
