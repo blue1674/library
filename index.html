@@ -6,40 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Texturina&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header><h1>My Library</h1></header>
+    <header>
+        <h1>My Library</h1><button id="addButton">
+            <p>+</p>
+        </button>
+    </header>
     <div class="container">
-        <button id="addButton">ADD</button>
+
     </div>
     <form id="addBookForm" action="#">
+        <p id = "closeForm"><img src = "images/close-icon.png" alt="Close Button" id = 'closeIcon'></p>
         <p>
-            <label> Title:
-                <input type="text" name="title" id="title" />
-            </label>
+            <span> Title: </span><input type="text" name="title" id="title" />
+        </p>
 
+        <p>
+            <span>Author:</span>
+            <input type="text" name="author" id="author" />
         </p>
-        <p><label>
-                Author:
-                <input type="text" name="author" id="author" />
-            </label>
 
-        </p>
         <p>
-            <label>
-                No. of Pages:
-                <input type="number" min="1" name="noOfPages" id="noOfPages" />
-            </label>
+            <span>No. of Pages:</span>
+            <input type="number" min="1" name="noOfPages" id="noOfPages" />
+        </p>
 
-        </p>
         <p>
-            Read?
-            <label><input type="radio" name="isRead" value="Yes" />Yes</label>
-            <label> <input type="radio" name="isRead" value="No" />No</label>
+            <span> Read?</span>
+        <span id = "radios">
+            <input type="radio" name="isRead" value="Yes" style="display: inline;" />Yes 
+            <input type="radio" name="isRead" value="No" style="display: inline;" id = "no" />No
+        </span>
         </p>
+
         <p>
-            <label><input type="submit" name="addBook" value="Add Book" id="submitButton" /></label>
+            <input type="submit" name="addBook" value="Add Book" id="submitButton" />
         </p>
     </form>
     <script src="script.js">

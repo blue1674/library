@@ -3,12 +3,21 @@ const addButton = document.getElementById("addButton");
 const submitButton = document.getElementById("submitButton");
 const container = document.getElementsByClassName("container")[0];
 const form = document.getElementById("addBookForm");
+const closeIcon = document.getElementById('closeIcon'); 
+const deleteIcon = document.getElementById("deleteBook"); 
+let id = 0; 
 
+deleteIcon.addEventListener('click', deleteBook);
 addButton.addEventListener("click", showForm);
 submitButton.addEventListener('click', submitForm);
 form.addEventListener('submit', handleForm);
+closeIcon.addEventListener('click', hideForm);
 
 function handleForm(event) { event.preventDefault(); }
+
+function deleteBook(){
+    
+}
 
 function Book(author, title, noOfPages, isRead) {
     this.author = author,
@@ -21,14 +30,19 @@ function Book(author, title, noOfPages, isRead) {
 }
 
 function addBookToLibrary(book) {
+    book["id"] = id++; 
     myLibrary.push(book);
 }
 
 function display(book) {
     const div = document.createElement("div");
-    div.innerHTML = `<p> Title: ${book.title}</p><p>Author: ${book.author}</p><p>Pages: ${book.noOfPages}</p><p>Read? ${book.isRead}</p>`;
+    div.innerHTML = `<p> Title: ${book.title}</p><p>Author: ${book.author}</p><p>Pages:  ${book.noOfPages}</p><p>Read?  ${book.isRead}</p>`;
     div.classList.add('card');
-    container.insertBefore(div, container.lastElementChild);
+    container.appendChild(div);
+    const deleteBook = document.createElement('img'); 
+    deleteBook.src = "images/delete-book.png"; 
+    deleteBook.classList.add('deleteBook');
+    div.prepend(deleteBook);
 }
 
 function displayStored() {
@@ -46,7 +60,7 @@ function displayRecent() {
 }
 
 function showForm() {
-    form.style.display = "block";
+    form.style.display = "flex";
 }
 
 function submitForm() {
