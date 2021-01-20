@@ -3,14 +3,8 @@ const addButton = document.getElementById("addButton");
 const submitButton = document.getElementById("submitButton");
 const container = document.getElementsByClassName("container")[0];
 const form = document.getElementById("addBookForm");
-const closeIcon = document.getElementById('closeIcon'); 
-Array.from(document.getElementsByClassName('deleteBook')).forEach(item => item.addEventListener('click', ()=>{
-    let parent = item.parentElement(); 
-    let grand_father = parent.parentElement();
-    grand_father.removeChild(parent);  
-}));
+const closeIcon = document.getElementById('closeIcon');
 
-let bookId = 0; 
 
 
 addButton.addEventListener("click", showForm);
@@ -21,15 +15,14 @@ closeIcon.addEventListener('click', hideForm);
 function handleForm(event) { event.preventDefault(); }
 
 
-function Book(author, title, noOfPages, isRead, id) {
+function Book(author, title, noOfPages, isRead) {
     this.author = author,
         this.title = title,
         this.noOfPages = noOfPages,
         this.isRead = isRead,
-        this.id = id; 
-        this.info = function () {
-            return `${title} by ${author}, ${noOfPages}, ${isRead}.`;
-        }
+    this.info = function () {
+        return `${title} by ${author}, ${noOfPages}, ${isRead}.`;
+    }
 }
 
 function addBookToLibrary(book) {
@@ -41,9 +34,16 @@ function display(book) {
     div.innerHTML = `<p>Title: ${book.title}</p><p>Author: ${book.author}</p><p>Pages:  ${book.noOfPages}</p><p>Read?  ${book.isRead}</p>`;
     div.classList.add('card');
     container.appendChild(div);
-    const deleteBook = document.createElement('img'); 
-    deleteBook.src = "images/delete-book.png"; 
+    const deleteBook = document.createElement('img');
+    deleteBook.src = "images/delete-book.png";
     deleteBook.classList.add('deleteBook');
+    deleteBook.addEventListener('click', () => {
+        let parent = deleteBook.parentNode;
+        let grand_father = parent.parentNode;
+        grand_father.removeChild(parent);
+        const index = myLibrary.indexOf(book);
+        myLibrary.splice(index, 1);
+    });
     div.prepend(deleteBook);
 }
 
@@ -53,7 +53,7 @@ function displayStored() {
     });
 }
 for (let i = 1; i < 11; i++)
-    addBookToLibrary(new Book("JRR Tolkien", "The Hobbit", "295", "No", bookId++));// "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
+    addBookToLibrary(new Book("JRR Tolkien", "The Hobbit", "295", "No"));// "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
 displayStored();
 
 function displayRecent() {
@@ -70,7 +70,7 @@ function submitForm() {
     const author = document.getElementById('author').value;
     const noOfPages = document.getElementById('noOfPages').value;
     const read = document.querySelector('input[name="isRead"]:checked').value;
-    const book = new Book(author, title, noOfPages, read, bookId++);
+    const book = new Book(author, title, noOfPages, read);
     addBookToLibrary(book);
     hideForm();
     form.reset();

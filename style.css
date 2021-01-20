@@ -15,6 +15,7 @@
     body{
         font-family: 'Texturina', serif;
         margin: 0;
+        background-color: var(--color4);
     }
     header{
         display: flex;
@@ -102,7 +103,7 @@ text-align: center;
   transform: translate(-50%, -50%);
     /* display: flex; */
     flex-direction: column; 
-    background-color: var(--color4);
+    background-color: var(--color3);
     font-size: 150%;
     color: var(--color8);
     width: 500px;
