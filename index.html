@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Texturina&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="shortcut icon" href="images/favicon.ico" />
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 
     </div>
     <form id="addBookForm" action="#">
-        <p id = "closeForm"><img src = "images/close-icon.png" alt="Close Button" id = 'closeIcon'></p>
+        <p id="closeForm"><img src="images/close-icon.png" alt="Close Button" id='closeIcon'></p>
         <p>
             <span> Title: </span><input type="text" name="title" id="title" />
         </p>
@@ -38,18 +38,45 @@
 
         <p>
             <span> Read?</span>
-        <span id = "radios">
-            <input type="radio" name="isRead" value="Yes" style="display: inline;" />Yes 
-            <input type="radio" name="isRead" value="No" style="display: inline;" id = "no" />No
-        </span>
+            <span id="radios">
+                <input type="radio" name="isRead" value="Yes" style="display: inline;" />Yes
+                <input type="radio" name="isRead" value="No" style="display: inline;" id="no" />No
+            </span>
         </p>
 
         <p>
             <input type="submit" name="addBook" value="Add Book" id="submitButton" />
         </p>
     </form>
-    <script src="script.js">
+
     </script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCSjpiW7pu4_l-clHZuaD0DOAUgb5lnCUM",
+            authDomain: "library-fc86a.firebaseapp.com",
+            projectId: "library-fc86a",
+            storageBucket: "library-fc86a.appspot.com",
+            messagingSenderId: "394532588074",
+            appId: "1:394532588074:web:1a21a609acd724d9ae5153",
+            measurementId: "G-WHZJM4VWCP"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
