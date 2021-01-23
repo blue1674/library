@@ -51,5 +51,7 @@ function hideForm() {
     document.getElementById("addBookForm").style.display = "none";
 }
 
-
+function toggleStatus(){
+    
+}
 
