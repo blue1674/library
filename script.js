@@ -5,7 +5,8 @@ const form = document.getElementById("addBookForm");
 const closeIcon = document.getElementById('closeIcon');
 
 addButton.addEventListener("click", showForm);
-form.addEventListener('submit', handleForm);
+
+
 closeIcon.addEventListener('click', hideForm);
 
 
@@ -50,36 +51,5 @@ function hideForm() {
     document.getElementById("addBookForm").style.display = "none";
 }
 
-    // // geting data
-    // db.collection('books').get().then((snapshot) => {
-    //     snapshot.docs.forEach(doc => {
-    //         display(doc.data(), doc);
-    //     })
-    // })
-
-// saving data
-function handleForm(event) {
-    event.preventDefault();
-    db.collection('books').add({
-        title: form.title.value,
-        author: form.author.value,
-        noOfPages: form.noOfPages.value,
-        isRead: form.isRead.value,
-    });
-    hideForm();
-}
 
 
-// real time listener
-db.collection('books').orderBy('title').onSnapshot(snapshot => {
-    let changes = snapshot.docChanges();
-    console.log(changes);
-    changes.forEach(change => {
-        if(change.type == 'added'){
-            display(change.doc);
-        }else if(change.type == 'removed'){
-            let div = container.querySelector('[data-id='+ change.doc.id + ']');
-            container.removeChild(div);
-        }
-    })
-})
