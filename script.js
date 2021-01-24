@@ -1,18 +1,44 @@
 let myLibrary = [];
-const addButton = document.getElementById("addButton");
-const submitButton = document.getElementById("submitButton");
+const addIcon = document.getElementById("addButton");
+const signUpIcon = document.getElementById('signUpButton');
+
 const container = document.getElementsByClassName("container")[0];
-const form = document.getElementById("addBookForm");
-const closeIcon = document.getElementById('closeIcon');
+
+const bookForm = document.getElementById("addBookForm");
+const signUpForm = document.getElementById('signUpForm');
+
+const closeIcons = document.getElementsByClassName('closeFormButton');
+
+Array.from(closeIcons).forEach(closeIcon => {
+    closeIcon.addEventListener('click', (e) => hideForm(e, bookForm));
+});
+
+addIcon.addEventListener("click", (e) => showForm(e, bookForm));
+signUpIcon.addEventListener("click", (e) => showForm(e, signUpForm));
 
 
 
-addButton.addEventListener("click", showForm);
-submitButton.addEventListener('click', submitForm);
-form.addEventListener('submit', handleForm);
-closeIcon.addEventListener('click', hideForm);
+bookForm.addEventListener('submit', e => addBook(e));
+signUpForm.addEventListener('submit', e => signUp(e))
 
-function handleForm(event) { event.preventDefault(); }
+
+
+
+
+function addBook(event) {
+    event.preventDefault();
+    const title = document.getElementById("title").value;
+    const author = document.getElementById('author').value;
+    const noOfPages = document.getElementById('noOfPages').value;
+    const read = document.querySelector('input[name="isRead"]:checked').value;
+    const book = new Book(author, title, noOfPages, read);
+    addBookToLibrary(book);
+    hideForm(event, bookForm);
+    bookForm.reset();
+    displayRecent();
+}
+
+
 
 
 function Book(author, title, noOfPages, isRead) {
@@ -20,9 +46,9 @@ function Book(author, title, noOfPages, isRead) {
         this.title = title,
         this.noOfPages = noOfPages,
         this.isRead = isRead,
-    this.info = function () {
-        return `${title} by ${author}, ${noOfPages}, ${isRead}.`;
-    }
+        this.info = function () {
+            return `${title} by ${author}, ${noOfPages}, ${isRead}.`;
+        }
 }
 
 function addBookToLibrary(book) {
@@ -61,24 +87,33 @@ function displayRecent() {
 
 }
 
-function showForm() {
+function showForm(e, form) {
     form.style.display = "flex";
 }
 
-function submitForm() {
-    const title = document.getElementById("title").value;
-    const author = document.getElementById('author').value;
-    const noOfPages = document.getElementById('noOfPages').value;
-    const read = document.querySelector('input[name="isRead"]:checked').value;
-    const book = new Book(author, title, noOfPages, read);
-    addBookToLibrary(book);
-    hideForm();
-    form.reset();
-    displayRecent();
+function signUp(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    console.log(email);
+    console.log(password)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed in 
+            var user = userCredential.user;
+            console.log(user);
+            // ...
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ..
+            console.log(user);
+            window.alert(errorMessage)
+        });
+    hideForm(e, signUpForm);
 }
 
-
-
-function hideForm() {
-    document.getElementById("addBookForm").style.display = "none";
+function hideForm(e, form) {
+    form.style.display = "none";
 }

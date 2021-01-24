@@ -4,24 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Texturina&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Library</title>
 </head>
 
 <body>
-    <header>
-        <h1>My Library</h1><button id="addButton">
-            <p>+</p>
-        </button>
-    </header>
-    <div class="container">
 
+    <header>
+        <div>
+            <h1>My Library</h1>
+            <button id="signUpButton"><i class="fa fa-user-plus fa-2x"></i></button>
+            <button id="addButton" hidden><i class="fa fa-plus-circle fa-2x"></i></button>
+        </div>
+    </header>
+
+    <div class="container">
     </div>
+
     <form id="addBookForm" action="#">
-        <p id = "closeForm"><img src = "images/close-icon.png" alt="Close Button" id = 'closeIcon'></p>
+        <p> <button><i class='fa fa-times fa-2x closeFormButton'></i></button>
+        </p>
         <p>
             <span> Title: </span><input type="text" name="title" id="title" />
         </p>
@@ -38,16 +45,56 @@
 
         <p>
             <span> Read?</span>
-        <span id = "radios">
-            <input type="radio" name="isRead" value="Yes" style="display: inline;" />Yes 
-            <input type="radio" name="isRead" value="No" style="display: inline;" id = "no" />No
-        </span>
+            <span id="radios">
+                <input type="radio" name="isRead" value="Yes" style="display: inline;" />Yes
+                <input type="radio" name="isRead" value="No" style="display: inline;" id="no" checked />No
+            </span>
         </p>
 
         <p>
-            <input type="submit" name="addBook" value="Add Book" id="submitButton" />
+            <input type="submit" name="addBook" value="Add Book" class="submitButton" />
         </p>
     </form>
+
+    <form id="signUpForm" action="#" method="POST">
+        <p> <button><i class='fa fa-times-circle fa-2x closeFormBtn'></i></button>
+        </p>
+        <p>
+            <span>Email: </span> <input type="text" name="email" id="email" />
+        </p>
+        <p>
+            <span>Password: </span> <input type="password" name="password" id="password" />
+        </p>
+        <p>
+            <input type="submit" name="registerUser" value="Register" class="submitButton" />
+        </p>
+    </form>
+
+
+
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCyg8-F5mx0YsBbwHRKT0_P656zXy72Kxw",
+            authDomain: "library-b7938.firebaseapp.com",
+            projectId: "library-b7938",
+            storageBucket: "library-b7938.appspot.com",
+            messagingSenderId: "171314545870",
+            appId: "1:171314545870:web:bac016d4da83293627bc9f"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+
     <script src="script.js">
     </script>
 </body>
